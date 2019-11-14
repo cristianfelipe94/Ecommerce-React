@@ -1,29 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom"
+import Home from './Home';
+import NotFound from './NotFound';
 import Service from './service/products.js'
 import ProductJson from './service/products.json'
+
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      data: []
-    }
-  }
-  async componentDidMount() {
-    const data = await Service(ProductJson);
-    this.setState({
-      data: data.Product
-    })
-  }
+const App = () => {
+  const [gotData, setData] = useState("");
 
-  render () {
-    return (
-      <div>
-        <h1>Hello Ecommerce.</h1>
-      </div>
-    )
-  }
+  async function getData() {
+    if(gotData === "") {
+      const data = await Service(ProductJson);
+      console.log("Async response: ", data);
+      setData(data);
+    }
+  };
+
+  getData();
+
+  return(
+    <div>
+      <Router>
+        <nav>
+          <NavLink to="/" style={{color: "white", padding: "20px"}}>Home</NavLink>
+        </nav>
+        <Switch>
+          <Route exact path="/" render={(props) => <Home {...props} data={gotData}/>}/>
+          <Route component={NotFound}/>
+        </Switch>
+      </Router>
+    </div>
+  )
 }
 
 export default App;

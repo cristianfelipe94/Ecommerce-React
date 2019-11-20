@@ -1,0 +1,53 @@
+body {
+  background: #000000;
+  background: -webkit-linear-gradient(bottom left, #000000, #2D3238);
+  background: -moz-linear-gradient(bottom left, #000000, #2D3238);
+  background: linear-gradient(to top right, #000000, #2D3238);
+  color: white;
+  padding: 0;
+  margin: 0;
+  background-attachment: fixed;
+}
+
+.app {
+  padding: 50px 0;
+}
+
+.nav {
+  position: fixed;
+  background-color: #090d0e;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.car__icon {
+  background-image: url("../car.svg");
+  background-repeat: no-repeat;
+  width: 30px;
+  background-size: contain;
+  height: 30px;
+  display: inline-block;
+}
+
+.nav__links {
+  color: white;
+  margin: 0 20px;
+}
+
+.head {
+  background-image: url("../martens1.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  position: fixed;
+}
+
+.layout {
+  max-width: 800px;
+  margin: 0 auto;
+}

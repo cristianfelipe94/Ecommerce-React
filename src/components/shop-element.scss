@@ -1,0 +1,112 @@
+.product {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.product__details {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background-color: #090d0ec7;
+}
+
+.product__actions {
+  position: relative;
+}
+
+.highlight {
+  color: #fdfc02;
+}
+
+.product__title {
+  color: #fdfc02;
+  // animation: glitch 1s infinite;
+}
+
+.glitch__container {
+  position: relative;
+  height: 60px;
+  font-size: 25px;
+}
+
+.glitch__container h2 {
+  position: absolute;
+}
+
+.glitch--two {
+  color: #fdfc02;
+  animation: glitchTwo 5s infinite ease-in-out;
+  transform: translate3d(0, 0, 0);
+}
+
+.glitch--three {
+  animation: glitchThree 2s infinite ease-in-out;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes glitchTwo {
+  0% {
+    color: #ffcf00;
+    transform: translate3d(2px, 0, 0);
+    z-index: 1;
+    opacity: 0.5;
+  }
+  25% {
+    color: #f7de04;
+    transform: translate3d(-1px, -1px, 0);
+    z-index: 0;
+    opacity: 0.8;
+  }
+  50% {
+    color: #ffcf00;
+    transform: translate3d(-2px, 2px, 0);
+    z-index: 1;
+    opacity: 0.5;
+  }
+}
+
+@keyframes glitchThree {
+  0% {
+    color: #fdfc02;
+    transform: translate3d(1px, 0, 0);
+    z-index: 1;
+    opacity: 0.5;
+  }
+  25% {
+    color: #f7de04;
+    transform: translate3d(-2px, -1px, 0);
+    z-index: 1;
+    opacity: 0.2;
+  }
+  50% {
+    color: #f7de04;
+    transform: translate3d(1px, 1px, 0);
+    z-index: 0;
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0;
+  }
+}
+
+.product__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: yellow;
+  padding: 10px 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.image {
+  width: 250px;
+}
+
+.image__container {
+  overflow: hidden;
+}

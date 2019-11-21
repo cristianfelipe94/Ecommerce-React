@@ -1,5 +1,5 @@
 import React from 'react';
-import ShopCard from '../components/shop-element'
+import ShopCard from '../components/elementCard/shop-element'
 
 const Car = ({car}) => {
   
@@ -23,8 +23,6 @@ const Car = ({car}) => {
   
     return (
       <div>
-        <h1>Shopping car</h1>
-        <h2>{car.length}</h2>
         {renderElements}
       </div>
     )

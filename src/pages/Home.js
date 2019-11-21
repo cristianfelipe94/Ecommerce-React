@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, NavLink } from "react-router-dom"
-import ShopCard from '../components/shop-element'
+import ShopCard from '../components/elementCard/shop-element.js'
 
 const Home = (props) => {
   const [data, setData] = useState("");
-  const [car, setCar] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
 
   const handleCar = (clickElement) => {
-    console.log(props.match.path)
     const id = clickElement;
+    console.log("Adding Id: ", id)
     const selected = data.find(element => element.id === id);
-    setCar([...car, selected]);
-    props.handleGlobalCar(car);
+    props.handleGlobalCar(selected);
   }
+
+  const handleRemoveCar = (clickElement) => {
+    const id = clickElement;
+    props.handleRemove(id);
+  } 
 
   const handleDetails = (clickElement) => {
     const id = clickElement;
@@ -30,16 +32,15 @@ const Home = (props) => {
   }
 
   const renderElements = () => data.map(product => {
-    return <ShopCard name={product.name} imageUrl={product.imageUrl} id={product.id} content={product.content} price={product.price} categoryId={product.id} rate={product.rate} handleBuy={handleCar} handleProduct={handleDetails}/>
+    return <ShopCard name={product.name} imageUrl={product.imageUrl} id={product.id} content={product.content} price={product.price} categoryId={product.id} rate={product.rate} handleBuy={handleCar} handleProduct={handleDetails} handleRemove={handleRemoveCar}/>
   })
 
   return (
     <div className="app">
-      <div className="head">
-      </div>
+      <div className="head"/>
       <div className="layout">
-      {!data !== "" && handleData() }
-      {data !== "" && renderElements() }
+        {!data !== "" && handleData() }
+        {data !== "" && renderElements() }
       </div>
     </div>
   )

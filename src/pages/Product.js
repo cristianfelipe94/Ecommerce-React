@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ShopCard from '../components/shop-element'
+import ShopCard from '../components/elementCard/shop-element'
 
 const Product = (props) => {
   const [data, setData] = useState("");

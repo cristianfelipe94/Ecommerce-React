@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ShopCard from '../components/elementCard/shop-element.js'
+import '../app/app.scss'
 
 const Home = (props) => {
   const [data, setData] = useState("");
@@ -7,7 +8,6 @@ const Home = (props) => {
 
   const handleCar = (clickElement) => {
     const id = clickElement;
-    console.log("Adding Id: ", id)
     const selected = data.find(element => element.id === id);
     props.handleGlobalCar(selected);
   }
@@ -37,7 +37,7 @@ const Home = (props) => {
 
   return (
     <div className="app">
-      <div className="head"/>
+      <div className="head head--home"/>
       <div className="layout">
         {!data !== "" && handleData() }
         {data !== "" && renderElements() }

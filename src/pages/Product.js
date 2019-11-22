@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ShopCard from '../components/elementCard/shop-element'
+import '../app/app.scss'
 
 const Product = (props) => {
   const [data, setData] = useState("");
@@ -20,7 +21,7 @@ const Product = (props) => {
     console.log("Details");
   }
 
-  const renderElement = () => {
+  const renderElements = () => {
     return(
     <ShopCard 
       name={props.data.name}
@@ -36,10 +37,13 @@ const Product = (props) => {
   )}
 
   return (
-    <>
-      {!data !== "" && handleData() }
-      {data !== "" && renderElement() }
-    </>
+    <div className="app">
+      <div className="head head--product"/>
+      <div className="layout">
+        {!data !== "" && handleData() }
+        {data !== "" && renderElements() }
+      </div>
+    </div>
   )
 }
 

@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom"
 
 // Pages
 import Home from '../pages/Home';
 import Car from '../pages/Car';
 import Product from '../pages/Product';
-import NotFound from '../NotFound';
-
-// Components
-import Footer from '../components/footerComponent/footer'
+import NotFound from '../pages/NotFound';
 
 // Get data
 import Service from '../service/products.js'
 import ProductJson from '../service/products.json'
 
+// Styles
 import './app.scss';
 
 const App = () => {
@@ -22,12 +20,10 @@ const App = () => {
   const [gotProductId, setProductId] = useState("");
   const [gotProductElement, setProductElement] = useState("");
 
-  async function getData() {
-    if(gotData === "") {
-      const data = await Service(ProductJson);
-      setData(data);
-    }
-  };
+  useEffect(() =>  {
+    const data = Service(ProductJson);
+    setData(data);
+  }, [])
 
   function globalCar(props) {
     setCar([...gotCar, props])
@@ -50,14 +46,6 @@ const App = () => {
     })
   }
 
-  function orderBy(event) {
-    const clickedElement = event.target.id;
-    const filtered = gotData.boots.filter(element => element.category === clickedElement);
-    setData(filtered);
-  }
-
-  getData();
-
   return(
     <div className="app__layout">
       <Router>
@@ -70,11 +58,6 @@ const App = () => {
             <p className="nav_counter">{gotCar.length ? gotCar.length : 0}</p>
             <div className="car__icon"/>
           </div>
-          <div className="filter">
-            <button id="girls" onClick={orderBy}>Girls</button>
-            <button id="boys" onClick={orderBy}>Boys</button>
-            <button id="all" onClick={orderBy}>Aliens</button>
-          </div>
         </nav>
         <Switch>
           <Route exact path="/" render={(props) => <Home {...props} data={gotData} handleGlobalCar={globalCar} handleProductId={globalProductId} handleProductElement={globalProductElement} handleRemove={handleGlobalRemover}/>}/>
@@ -83,7 +66,6 @@ const App = () => {
           <Route component={NotFound}/>
         </Switch>
       </Router>
-      <Footer/>
     </div>
   )
 }

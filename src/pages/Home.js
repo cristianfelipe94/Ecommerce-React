@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import ShopCard from '../components/elementCard/shop-element.js'
+import ShopCard from '../components/elementCard/element-shop.js'
+
+import Layout from '../components/layout/layout'
+
 import '../app/app.scss'
 
 const Home = (props) => {
@@ -36,13 +39,10 @@ const Home = (props) => {
   })
 
   return (
-    <div className="app">
-      <div className="head head--home"/>
-      <div className="layout">
-        {!data !== "" && handleData() }
-        {data !== "" && renderElements() }
-      </div>
-    </div>
+    <Layout type="home">
+      {!data !== "" && handleData() }
+      {data !== "" && renderElements() }
+    </Layout>
   )
 }
 

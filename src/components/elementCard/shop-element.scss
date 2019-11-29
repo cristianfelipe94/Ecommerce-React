@@ -108,10 +108,101 @@
   }
 }
 
+.payment--buy {
+  background-color: yellow;
+  padding: 10px 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  transition: 0.8s;
+  width: 70px;
+  &:hover {
+    background-color: #cece11;;
+  }
+}
+
+.payment--all {
+  background-color: yellow;
+  padding: 10px 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  transition: 0.8s;
+  width: 70px;
+  display: block;
+  margin: 0 auto;
+  &:hover {
+    background-color: #cece11;;
+  }
+}
+
+.payment--close {
+  background-color: white;
+  padding: 10px 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  transition: 0.8s;
+  width: 50px;
+  &:hover {
+    background-color: #cece11;;
+  }
+}
+
+.form__wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form__field {
+  padding: 15px 0;
+}
+
+.form__field input {
+  width: 100%;
+}
+
 .image {
   width: 250px;
 }
 
 .image__container {
   overflow: hidden;
+}
+
+.modal {
+  background-color: black;
+}
+
+.modal--close {
+  display: none;
+}
+
+.modal--open {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.message--success {
+  color: chartreuse;
+}
+
+.message--error {
+  color: crimson;  
+}
+
+.message--process {
+  color: #f7de04;
+}
+
+.btn__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 0;
 }

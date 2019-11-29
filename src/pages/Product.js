@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import ShopCard from '../components/elementCard/shop-element'
+import BuyCard from '../components/elementCard/element-buy'
+
+import Layout from '../components/layout/layout'
+
 import '../app/app.scss'
 
 const Product = (props) => {
@@ -23,7 +26,7 @@ const Product = (props) => {
 
   const renderElements = () => {
     return(
-    <ShopCard 
+    <BuyCard 
       name={props.data.name}
       imageUrl={props.data.imageUrl}
       id={props.data.id}
@@ -37,13 +40,10 @@ const Product = (props) => {
   )}
 
   return (
-    <div className="app">
-      <div className="head head--product"/>
-      <div className="layout">
-        {!data !== "" && handleData() }
-        {data !== "" && renderElements() }
-      </div>
-    </div>
+    <Layout type="product">
+      {!data !== "" && handleData()}
+      {data !== "" && renderElements()}
+    </Layout>
   )
 }
 

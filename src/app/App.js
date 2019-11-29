@@ -37,15 +37,6 @@ const App = () => {
     setProductElement(props)
   }
 
-  function handleGlobalRemover(props) {
-    gotCar.map(element => {
-      if(element.id === props) {
-        const indexToRemove = gotCar.indexOf(element);
-        gotCar.splice(indexToRemove, 1);
-      }
-    })
-  }
-
   return(
     <div className="app__layout">
       <Router>
@@ -60,7 +51,7 @@ const App = () => {
           </div>
         </nav>
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} data={gotData} handleGlobalCar={globalCar} handleProductId={globalProductId} handleProductElement={globalProductElement} handleRemove={handleGlobalRemover}/>}/>
+          <Route exact path="/" render={(props) => <Home {...props} data={gotData} handleGlobalCar={globalCar} handleProductId={globalProductId} handleProductElement={globalProductElement}/>}/>
           <Route exact path="/car" render={(props) => <Car {...props} car={gotCar}/>}/>
           <Route exact path={`/product/:${gotProductId}`} render={(props) => <Product {...props} data={gotProductElement}/>}/>
           <Route component={NotFound}/>

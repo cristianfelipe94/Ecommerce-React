@@ -37,16 +37,26 @@ const Car = ({car}) => {
     )
   } else {
     const renderElements= car.map(product => {
-      return <ShopCard name={product.name} imageUrl={product.imageUrl} id={product.id} content={product.content} price={product.price} categoryId={product.id} rate={product.rate}/>
+      return (
+        <ShopCard
+          name={product.name}
+          imageUrl={product.imageUrl}
+          id={product.id}
+          content={product.content}
+          price={product.price}
+          categoryId={product.id}
+          rate={product.rate}
+          btnType= {2}
+        />
+      )
     })
 
     return (
       <Layout type="car">
         {renderElements}
-
         <button onClick={handleAction} className="payment--all">Buy all</button>
         <div className={`modal ${modalState}`}>
-          <Payment data={handleAction}/>
+          <Payment action={handleAction} data={car}/>
         </div>
       </Layout>
     )

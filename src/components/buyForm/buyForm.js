@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
-const Payment = ({name, price, handleAction}) => {
+const Payment = ({action, data}) => {
+  console.log(data, action)
   const [message, setMessage] = useState("");
   const [messageState, setMessageState] = useState("message--error");
 
@@ -10,6 +11,10 @@ const Payment = ({name, price, handleAction}) => {
     email: "",
     creditCard: ""
   });
+
+  useEffect(() => {
+    setInitialScroll();
+  }, []);
 
   function handleFormFields(event) {
     setFormFields({
@@ -37,7 +42,7 @@ const Payment = ({name, price, handleAction}) => {
         setMessageState("message--success")
         setMessage("Payment success")
         setTimeout(() => {
-          handleAction()
+          action()
         }, 1000)
       } else {
         setMessage("Payment error, please try it again.")
@@ -50,11 +55,31 @@ const Payment = ({name, price, handleAction}) => {
     window.scrollTo(0, 0);
   }
 
+  const renderElements = () => {
+    if (data.length) {
+      const generateProductsData = data.map((element) => {
+        return (
+          <div>
+            <p>Product name: <span className="highlight">{element.name}</span></p>
+            <p>Price: <span className="highlight">${element.price}</span></p>
+          </div>
+        )
+      })
+      return generateProductsData
+    } else {
+      return (
+        <div>
+          <p>Product name: <span className="highlight">{data.name}</span></p>
+          <p>Price: <span className="highlight">{data.price}</span></p>
+        </div>
+      )
+    }
+  }
+
   return (
     <div className="form__wrapper">
-      <h2>Ready to buy it?</h2>
-      <p>Product name: <span className="highlight">{name}</span></p>
-      <p>Price: <span className="highlight">{price}</span></p>
+      <h2>Ready to buy?</h2>
+      {renderElements()}
 
       <form onSubmit={handleSubmit} className="form">
         <div className="form__field">
@@ -102,8 +127,8 @@ const Payment = ({name, price, handleAction}) => {
           />
         </div>
         <div className="btn__wrapper">
-          <button className="payment--buy" type="submit">Buy</button>
-          <button className="payment--close" onClick={() => handleAction()}>Close</button>
+          <button className="payment--buy" type="submit" onBlur={() => setMessage("")}>Buy</button>
+          <button className="payment--close" onClick={() => action()} onBlur={() => setMessage("")}>Close</button>
         </div>
       </form>
       <p className={messageState}>{message}</p>
